@@ -1,14 +1,20 @@
 import mysql.connector
+import os
+
+
+dbEndpoint = os.environ.get('dbendpoint')
+dbUsername = os.environ.get('dbusername')
+dbPassword = os.environ.get('dbpassword')
 
 
 def connect_mysql():
     conn = mysql.connector.connect(
-        host="localhost", user="rj", passwd="P@ssw0rd"
+        host=dbEndpoint, user=dbUsername, passwd=dbPassword
     )
     c = conn.cursor()
     c.execute("CREATE DATABASE if not exists rwe")
     conn1 = mysql.connector.connect(
-        host="localhost", user='rj', passwd="P@ssw0rd", database="rwe"
+        host=dbEndpoint, user=dbUsername, passwd=dbPassword, database="rwe"
     )
     conn1.cursor()
     return conn1
