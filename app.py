@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from service import get_all_stations, get_station_by_id
+from service import get_all_stations, get_station_by_id, get_matching_stations, Criterion
 import requests_cache
 app = FastAPI()
 
@@ -11,7 +11,7 @@ async def home():
     return {"message": "Hello World"}
 
 
-@app.get("/stations")
+@app.get("/stations/all")
 async def get_stations():
     return get_all_stations()
 
@@ -20,6 +20,10 @@ async def get_stations():
 async def get_station_id(station_id):
     return get_station_by_id(station_id)
 
+
+@app.get("/stations")
+async def get_match_stations(criterion: Criterion):
+    return get_matching_stations(criterion)
 
 if __name__ == '__main__':
     app.run(debug=True)

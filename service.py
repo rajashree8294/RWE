@@ -8,13 +8,13 @@ from constants import BASE_URL, TOKEN
 headers = {'token': TOKEN}
 
 
-class Station(BaseModel):
-    startDate: dt.date
-    endDate: dt.date
-    latitude: int
-    longitude: int
-    net: Optional[int] = None
-    dataCoverage: Optional[int] = None
+class Criterion(BaseModel):
+    startdate: dt.date
+    enddate: dt.date
+    latitude: float
+    longitude: float
+    net: Optional[float] = 2
+    dataCoverage: Optional[int] = 0
     limit: Optional[int] = None
     offset: Optional[int] = None
 
@@ -27,5 +27,16 @@ def get_all_stations():
 
 def get_station_by_id(station_id):
     resp = requests.get(BASE_URL + "stations/" + station_id,  headers=headers)
+    print("Time: {0} / Used Cache: {1}".format(datetime.now(), resp.from_cache))
+    return resp.json()
+
+
+def get_matching_stations(c: Criterion):
+    params = {
+        "startdate": c.startdate,
+        "enddate": c.enddate,
+        "extent": [c.latitude-c.net, c.longitude-c.net, c.latitude + c.net, c.longitude + c.net]
+    }
+    resp = requests.get(BASE_URL + "stations/", headers=headers, params=params)
     print("Time: {0} / Used Cache: {1}".format(datetime.now(), resp.from_cache))
     return resp.json()
