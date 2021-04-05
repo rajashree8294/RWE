@@ -1,7 +1,21 @@
 from fastapi import FastAPI
-from service import get_all_stations, get_station_by_id, get_matching_stations, Criterion
+from fastapi.middleware.cors import CORSMiddleware
+from src.service import get_all_stations, get_station_by_id, get_matching_stations, Criterion
 import requests_cache
 app = FastAPI()
+
+origins = [
+    "http://localhost",
+    "http://localhost:4200"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 requests_cache.install_cache('station_cache', backend='sqlite', expire_after=180)
 
@@ -21,7 +35,7 @@ async def get_station_id(station_id):
     return get_station_by_id(station_id)
 
 
-@app.get("/stations")
+@app.post("/stations")
 async def get_match_stations(criterion: Criterion):
     return get_matching_stations(criterion)
 

@@ -1,0 +1,39 @@
+.search-container {
+  margin: 2% 8% 2% 8%;
+}
+
+.search-container .mat-form-field + .mat-form-field {
+  margin-left: 10px;
+}
+
+.search-container .mat-form-field {
+  width: 220px;
+}
+
+.search-container form {
+  margin: 20px;
+}
+
+.search-container form > * {
+  margin: 5px 0;
+}
+
+.search-container .mat-button {
+  margin-left: 5px;
+}
+
+.taskContainer {
+  display: flex;
+  width: 80%;
+  margin-left: 10%;
+  flex-direction: column;
+  margin-top: 5%;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}

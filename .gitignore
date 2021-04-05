@@ -3,3 +3,7 @@
 /db/db.iml
 /station/station.iml
 /tests/tests.iml
+/service/service.iml
+/frontend/node_modules/
+.DS_STORE
+**/dist/
