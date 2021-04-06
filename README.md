@@ -1,29 +1,39 @@
-### RWE - Station Data Fetcher
+# RWE - Station Data Fetcher
 
-# Rwe
+## Getting Started
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
+This project was generated with following library versions
+- [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
+- Python 2.7.17
+- npm 7.8.0
+- node v14.3.0
 
-## Development server
+To install other dependencies,
+- cd to the directory where requirements.txt is located 
+- activate your virtualenv
+- run: `pip install -r requirements.txt` in your shell
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Running Application Locally
 
-## Code scaffolding
+#### Python server
+- Make sure you are in RWE directory
+- Start python server using `uvicorn app:app` command.
+  You will see Application startup complete and
+  Uvicorn is running on `8000` port by default
+- Navigate to `http://127.0.0.1:8000`  hit the API
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#### Development server
+- `cd` to `frontend` directory
+- Run `ng serve` for a dev server
+- Navigate to `http://localhost:4200/`
 
-## Build
+        Note: Starting python server must to access
+        fully functional functionality from user Interface
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Testing Application Locally
+- Make sure you are in RWE directory
+- Run `pytest` command
+- Your will see the test cases statistics on the console
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Author
+### Rajashree Joshi
