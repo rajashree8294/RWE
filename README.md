@@ -27,10 +27,9 @@ To install other dependencies,
 - Run `ng serve` for a dev server
 - Navigate to `http://localhost:4200/`
 
-        Note: Starting python server must to access
-        fully functional functionality from user Interface
+        Note: Starting python server must to access fully functional functionality from user Interface
 
-### Testing Application Locally
+## Testing Application Locally
 - Make sure you are in RWE directory
 - Run `pytest` command
 - Your will see the test cases statistics on the console
