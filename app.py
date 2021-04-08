@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.service import get_all_stations, get_station_by_id, get_matching_stations, Criterion
+from src.stationService import get_all_stations, get_station_by_id, get_matching_stations, StationCriterion
+from src.dataService import get_temp_data, TempCriterion
 import requests_cache
 app = FastAPI()
 
@@ -36,8 +37,14 @@ async def get_station_id(station_id):
 
 
 @app.post("/stations")
-async def get_match_stations(criterion: Criterion):
-    return get_matching_stations(criterion)
+async def get_match_stations(stationCriterion: StationCriterion):
+    return get_matching_stations(stationCriterion)
+
+
+@app.post("/temp-data")
+async def get_min_max_temp_data(tempCriterion: TempCriterion):
+    return get_temp_data(tempCriterion)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

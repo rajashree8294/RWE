@@ -12,7 +12,7 @@ Type: Model
 Description: Pydantic Model for Criterion
 Usage: To hold user criterion to filter out the station data
 '''
-class Criterion(BaseModel):
+class StationCriterion(BaseModel):
     startdate: dt.date
     enddate: dt.date
     latitude: float
@@ -48,9 +48,9 @@ def get_station_by_id(station_id):
 '''
 Type: Function
 Description: Fetch all the stations matching criterion
-Params: Criterion object
+Params: StationCriterion object
 '''
-def get_matching_stations(c: Criterion):
+def get_matching_stations(c: StationCriterion):
     params = {
         "startdate": c.startdate,
         "enddate": c.enddate,
