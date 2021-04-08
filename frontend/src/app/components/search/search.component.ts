@@ -5,6 +5,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import { DatePipe } from '@angular/common';
+import {AnalysisComponent} from "../analysis/analysis.component";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-search',
@@ -20,18 +22,14 @@ export class SearchComponent implements OnInit {
   coverageResponse: any;
   response = new MatTableDataSource<any>();
   searchForm: FormGroup;
-  displayedColumns: string[] = ['position', 'id', 'name', 'mindate', 'maxdate', 'latitude', 'longitude', 'elevationUnit', 'elevation', 'datacoverage'];
+  displayedColumns: string[] = ['position', 'id', 'name', 'mindate', 'maxdate', 'latitude', 'longitude', 'elevationUnit', 'elevation', 'datacoverage', 'analysis'];
 
-  constructor(public fb: FormBuilder, private rweService: RweService,  private datePipe: DatePipe) {
+  constructor(public fb: FormBuilder, private rweService: RweService,  private  dialog: MatDialog, private datePipe: DatePipe) {
   }
 
   ngOnInit(): void {
     this.mainForm();
   }
-
-  // ngAfterViewInit(): void {
-  //   this.response.paginator = this.paginator;
-  // }
 
   mainForm(): void {
     this.searchForm = this.fb.group({
@@ -67,4 +65,17 @@ export class SearchComponent implements OnInit {
     console.log(this.response);
   }
 
+  showTemperatureCharts(station) {
+    station.startdate = this.searchForm.value.startdate;
+    station.enddate = this.searchForm.value.enddate;
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '700px';
+    dialogConfig.data = station;
+    const dialogRef = this.dialog.open(AnalysisComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      this.listAllStations();
+    });
+  }
 }

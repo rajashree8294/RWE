@@ -167,6 +167,16 @@
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="analysis">
+      <th mat-header-cell *matHeaderCellDef>Plots</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <mat-icon matTooltip="View Details" color="accent"
+                  class="editIcon" (click)="showTemperatureCharts(element)"
+        >analytics
+        </mat-icon>
+      </td>
+    </ng-container>
+
     <!--'id', 'name', 'mindate', 'maxdate', 'latitude', 'longitude', 'elevationUnit', 'elevation', 'datacoverage'-->
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

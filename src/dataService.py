@@ -15,7 +15,7 @@ Usage: To hold user criterion to retrieve MIN and MAX Temperature for the statio
 class TempCriterion(BaseModel):
     startdate: dt.date
     enddate: dt.date
-    staionid: str
+    stationid: str
     limit: Optional[int] = 100
 
 '''
@@ -27,7 +27,7 @@ def get_temp_data(t: TempCriterion):
     params = {
         "startdate": t.startdate,
         "enddate": t.enddate,
-        "stationid": t.staionid,
+        "stationid": t.stationid,
         "units": "standard",
         "limit": t.limit,
         "datasetid": "GHCND",

@@ -23,12 +23,15 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { AnalysisComponent } from './components/analysis/analysis.component';
+import {HighchartsChartModule} from "highcharts-angular";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    SearchComponent
+    SearchComponent,
+    AnalysisComponent
   ],
     imports: [
         BrowserModule,
@@ -48,7 +51,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
         MatTableModule,
         MatSortModule,
         MatPaginatorModule,
-        MatTooltipModule
+        MatTooltipModule,
+        HighchartsChartModule
     ],
   providers: [RweService, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
